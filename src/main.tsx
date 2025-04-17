@@ -3,12 +3,16 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { Login } from './pages/login/index.tsx';
+import { Home } from './pages/home/index.tsx';
+import { Register } from './pages/register/index.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

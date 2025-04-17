@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { UserService } from '../../services/user.service';
+import { Router, useNavigate } from 'react-router';
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -31,6 +36,8 @@ export const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    return navigate('/home');
+
     if (!UserService.isEmailValid(email)) {
       setError('Invalid email');
       return;
@@ -46,9 +53,13 @@ export const Login = () => {
     UserService.login(email, password).then((success) => {});
   };
 
+  const navToRegister = () => {
+    return navigate('/register');
+  };
+
   return (
     <div className='flex w-screen h-screen items-center justify-center bg-primary flex-col'>
-      <h1 className='text-3xl text-center text-gray-300 mb-10'>Agilehub</h1>
+      <h1 className='text-3xl text-center text-default mb-10'>Agilehub</h1>
 
       <div>
         <form
@@ -56,48 +67,32 @@ export const Login = () => {
           onSubmit={handleSubmit}
         >
           <div>
-            <label className='text-sm ' htmlFor='email'>
-              Email
-            </label>
-            <input
-              onChange={handleEmailChange}
-              value={email}
-              type='email'
-              name='email'
-              className='w-full border-gray-300 border rounded-lg p-1 mt-2'
-            />
+            <Input type='email' value={email} label='Email' htmlFor='email' />
           </div>
 
           <div>
-            <div className='flex justify-between items-center'>
-              <label className='text-sm ' htmlFor='password'>
-                Password
-              </label>
-
-              <span className='text-[10px] hover:underline cursor-pointer hover:text-blue-500 duration-100'>
-                Forgot password?
-              </span>
-            </div>
-            <input
-              onChange={handlePasswordChange}
-              value={password}
+            <Input
               type='password'
-              name='password'
-              className='w-full border-gray-300 border rounded-lg p-1 mt-2'
+              value={password}
+              label='Password'
+              htmlFor='password'
+              hasLink={true}
+              linkText='Forgot password?'
             />
           </div>
 
           {error && <span className='text-red-500 text-xs mb-3'>{error}</span>}
 
-          <button className='w-full bg-gray-300 text-gray-800 px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-900 hover:text-gray-300 transition-all duration-200'>
-            Sign In
-          </button>
+          <Button type='submit' text='Login' />
         </form>
 
         <div className='default-container w-full p-4'>
           <span className='text-xs'>
             Don't have an account?
-            <a className='text-gray-300 underline ml-1 cursor-pointer hover:text-blue-500 duration-100'>
+            <a
+              className='text-default underline ml-1 cursor-pointer duration-100 text-default-hover'
+              onClick={navToRegister}
+            >
               Sign Up
             </a>
           </span>

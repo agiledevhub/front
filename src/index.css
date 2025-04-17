@@ -1,9 +1,82 @@
 @import 'tailwindcss';
 
 .bg-primary {
-  background-color: #0d1116;
+  background-color: var(--primary);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.bg-highlight {
+  background-color: var(--highlight);
+}
+
+.border-highlight {
+  border-color: var(--highlight);
+}
+
+.border-secondary {
+  border-color: var(--secondary);
+}
+.border-primary {
+  border-color: var(--primary);
+}
+
+.border-accent {
+  border-color: var(--accent);
+}
+
+.bg-accent {
+  background-color: var(--accent);
 }
 
 .default-container {
-  @apply border-gray-600 border rounded-lg shadow-lg space-y-4 text-gray-300;
+  @apply border rounded-lg shadow-lg space-y-4 text-gray-300;
+
+  border-color: var(--highlight);
+}
+
+.text-default {
+  @apply text-gray-300;
+}
+
+.text-default-hover:hover {
+  transition: all 0.2s ease-in-out;
+  color: var(--secondary);
+}
+
+:root {
+  --primary: #1c2e4a;
+  --secondary: #52677d;
+  --tertiary: #bdc4d4;
+  --accent: #0f1a2b;
+  --highlight: #d1cfc9;
+}
+
+.button-primary {
+  background-color: var(--highlight);
+  color: var(--primary);
+}
+
+.button-primary:hover {
+  background-color: var(--accent);
+  color: var(--highlight);
+}
+
+.button-secondary {
+  background-color: var(--secondary);
+  color: var(--highlight);
+}
+.button-secondary:hover {
+  background-color: var(--highlight);
+  color: var(--secondary);
+}
+.button-accent {
+  background-color: var(--accent);
+  color: var(--highlight);
+}
+.button-accent:hover {
+  background-color: var(--highlight);
+  color: var(--accent);
 }

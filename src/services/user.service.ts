@@ -28,3 +28,6 @@ export class UserService {
     return true;
   }
 }
+
+const userService = new UserService();
+export default userService;
